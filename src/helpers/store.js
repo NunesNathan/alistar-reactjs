@@ -11,7 +11,7 @@ export function sendTasks(task) {
   localStorage.setItem('tasks', JSON.stringify(arr));
 }
 
-export function refreshTasks(task) {
+export function deleteTask(task) {
   let arr = JSON.parse(localStorage.getItem('tasks'));
   arr.splice(task, 1)
   localStorage.setItem('tasks', JSON.stringify(arr));
@@ -20,3 +20,7 @@ export function refreshTasks(task) {
 export function getTasks() {
   return JSON.parse(localStorage.getItem('tasks'));
 }
+
+export function refreshTasks(arrOfTasks) {
+  localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
+} 
