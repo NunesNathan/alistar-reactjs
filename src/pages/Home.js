@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from '../components/List';
+import ListManagement from '../components/ListManagement';
 import * as store from '../helpers/store';
 
 export default class Home extends Component {
@@ -14,10 +15,12 @@ export default class Home extends Component {
   enterFunc = (event) => {
     event.preventDefault();
     const { inputValue } = this.state;
-    store.sendTasks(inputValue)
-    this.setState({
-      inputValue: '',
-    })
+    if (inputValue) {
+      store.sendTasks(inputValue);
+      this.setState({
+        inputValue: '',
+      });
+    }
   }
 
   changeInput = ({ target: { value } }) => {
@@ -29,24 +32,28 @@ export default class Home extends Component {
   render() {
     const { inputValue } = this.state;
     return (
-      <label htmlFor="get">
-        <input
-          type="text"
-          data-testid="query-input"
-          value={ inputValue }
-          onChange={ this.changeInput }
-          id="get"
-        />
-        <button
-          type="submit"
-          data-testid="query-button"
-          onClick={ this.enterFunc }
-          id="get"
-        >
-          Buscar!
-        </button>
-        <List items={ store.getTasks() } />
-      </label>
+      <>
+        <label htmlFor="taskInput">
+          <input
+            type="text"
+            data-testid="query-input"
+            placeholder="Tarefa..."
+            value={ inputValue }
+            onChange={ this.changeInput }
+            id="taskInput"
+          />
+          <button
+            type="submit"
+            data-testid="query-button"
+            onClick={ this.enterFunc }
+            id="taskInput"
+          >
+            Listar!
+          </button>
+          <List items={ store.getTasks() } />
+        </label>
+        <ListManagement />
+      </>
     );
   }
 }
