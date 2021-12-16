@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 import ControlKeys from './ControlKeys';
 
 export default class ItemList extends Component {
   render() {
     const { item } = this.props;
     return (
-      <li>
+      <li
+        className="itemList"
+      >
         <span>
-        { item }
+          { item }
         </span>
         <ControlKeys />
       </li>
     );
   }
 }
+
+ItemList.propTypes = {
+  item: PropType.string.isRequired,
+};

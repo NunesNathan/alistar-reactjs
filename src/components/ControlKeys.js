@@ -12,20 +12,21 @@ export default class ControlKeys extends Component {
     const previous = $(target).parent().prev().find('span');
     const next = $(target).parent().next().find('span');
     const current = $(target).parent().find('span');
+
     if (target.name === 'up') {
       const [previousResult, currentResult] = [$(current).html(), $(previous).html()];
       $(previous).text(previousResult);
       $(current).text(currentResult);
     }
+
     if (target.name === 'down') {
       const [nextResult, currentResult] = [$(current).html(), $(next).html()];
       $(next).text(nextResult);
       $(current).text(currentResult);
     }
 
-    const arr = [];
-    $('li > span').each((i, e) => arr.push($(e).html()));
-    store.refreshTasks(arr);
+    store.refreshTasks([]);
+    $('li > span').each((i, e) => store.sendTasks({ task: $(e).html() }));
   }
 
   render() {

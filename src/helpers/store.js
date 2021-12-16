@@ -3,7 +3,7 @@ export function sendTasks(task) {
   if (!arr) {
     arr = [];
   }
-  if (arr[0] === null) {
+  if (!arr[0]) {
     arr[0] = task;
   } else {
     arr.push(task);

@@ -4,8 +4,9 @@ import * as store from '../helpers/store';
 
 export default class ListManagement extends Component {
   clearList = () => {
-    $('ol li').remove();
+    $('ol li').each((i, e) => e.remove());
     store.refreshTasks([]);
+    window.location.reload(false);
   }
 
   render() {
