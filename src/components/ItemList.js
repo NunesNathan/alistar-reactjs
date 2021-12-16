@@ -7,12 +7,15 @@ export default class ItemList extends Component {
     const { item } = this.props;
     return (
       <li
-        className="itemList"
+        className="
+        row col-8 d-flex mx-auto justify-content-center
+        mb-2 pt-1"
       >
-        <span>
+        <span className="text-center col-4">
           { item }
         </span>
         <ControlKeys />
+        <hr className="border-bottom-toHr" />
       </li>
     );
   }

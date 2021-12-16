@@ -33,6 +33,7 @@ export default class ControlKeys extends Component {
     return (
       <>
         <button
+          className="btn-light mx-1 col-2"
           type="button"
           name="up"
           onClick={ this.moveButton }
@@ -40,6 +41,7 @@ export default class ControlKeys extends Component {
           {' ↑ '}
         </button>
         <button
+          className="btn-dark mx-1 col-2"
           type="button"
           name="down"
           onClick={ this.moveButton }
@@ -47,6 +49,7 @@ export default class ControlKeys extends Component {
           {' ↓ '}
         </button>
         <button
+          className="btn-danger mx-1 col-2"
           type="button"
           onClick={ this.excludeButton }
         >

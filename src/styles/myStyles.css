@@ -1,0 +1,16 @@
+:root {
+  --neithans-c6: #c6c6c6;
+  --neithans-c6-rgb: 198, 198, 198;
+  --neithans-gradient: linear-gradient(200deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+}
+
+.border-bottom-toHr {
+  border-bottom: 1px solid #f2f5f7 !important;
+  max-width: 48vw;
+  margin-left: 5vw;
+}
+
+.bg-c6 {
+  --neithans-bg-opacity: 70%;
+  background-color: rgba(var(--neithans-c6-rgb), var(--neithans-bg-opacity)) !important;
+}

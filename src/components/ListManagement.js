@@ -11,14 +11,16 @@ export default class ListManagement extends Component {
 
   render() {
     return (
-      <div>
+      <div className="row order-3 d-flex">
         <button
           type="button"
           onClick={ this.clearList }
+          className="col-6 btn-danger"
         >
           Limpar lista
         </button>
         <button
+          className="col-6 btn-info"
           type="button"
         >
           Exibir Detalhes

@@ -6,8 +6,15 @@ export default class List extends Component {
   render() {
     const { items } = this.props;
     return (
-      <ol>
-        <h3>Afazeres:</h3>
+      <ol
+        className="
+      container
+      justify-content-center
+      order-2
+      col-12
+      my-5"
+      >
+        <h4 className="text-center">Afazeres:</h4>
         {items
           && items.map((eachItem) => (
             <ItemList
