@@ -11,7 +11,7 @@ export default class Header extends Component {
           <ul className="nav mb-md-0 justify-content-center">
             <li className="nav-link px-2">
               <a
-                className="link-dark"
+                className="link-styled"
                 href="https://www.linkedin.com/in/nathannunes-/"
                 target="_blank"
                 rel="noreferrer"
@@ -21,7 +21,7 @@ export default class Header extends Component {
             </li>
             <li className="nav-link px-2">
               <a
-                className="link-dark"
+                className="link-styled"
                 href="https://github.com/NunesNathan"
                 target="_blank"
                 rel="noreferrer"
@@ -31,7 +31,7 @@ export default class Header extends Component {
             </li>
             <li className="nav-link px-2">
               <a
-                className="link-dark"
+                className="link-styled"
                 href="https://nunesnathan.github.io/"
                 target="_blank"
                 rel="noreferrer"

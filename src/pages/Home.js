@@ -32,7 +32,7 @@ export default class Home extends Component {
   render() {
     const { inputValue } = this.state;
     return (
-      <main className="d-flex flex-column col-12 align-items-center">
+      <main className="d-flex main flex-column col-12 align-items-center">
         <label
           className="order-1 flex-wrap d-flex flex-row input-group
           w-50 row"
@@ -45,14 +45,14 @@ export default class Home extends Component {
             value={ inputValue }
             onChange={ this.changeInput }
             id="taskInput"
-            className="form-control col-9 bg-light"
+            className="form-control col-9 bg-grey-2"
           />
           <button
             type="submit"
             data-testid="query-button"
             onClick={ this.enterFunc }
             id="taskInput"
-            className="btn-outline-success col-3"
+            className="btn-n-outline-success ml-2 col-3"
           >
             Listar!
           </button>

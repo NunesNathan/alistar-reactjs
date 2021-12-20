@@ -33,27 +33,35 @@ export default class ControlKeys extends Component {
     return (
       <>
         <button
-          className="btn-light mx-1 col-2"
+          className="btn-n-info mx-1 col-1"
+          type="button"
+          name="infos"
+          onClick={ this.moveButton }
+        >
+          <i className="far fa-window-maximize" />
+        </button>
+        <button
+          className="btn-grey-7 mx-1 col-1"
           type="button"
           name="up"
           onClick={ this.moveButton }
         >
-          {' ↑ '}
+          <i className="fas fa-arrow-up" />
         </button>
         <button
-          className="btn-dark mx-1 col-2"
+          className="btn-grey-7 mx-1 col-1"
           type="button"
           name="down"
           onClick={ this.moveButton }
         >
-          {' ↓ '}
+          <i className="fas fa-arrow-down" />
         </button>
         <button
-          className="btn-danger mx-1 col-2"
+          className="btn-n-danger mx-1 col-1"
           type="button"
           onClick={ this.excludeButton }
         >
-          {' X '}
+          <i className="fas fa-trash-alt" />
         </button>
       </>
     );

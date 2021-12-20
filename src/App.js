@@ -30,13 +30,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <body
+      <div
         className="
-        bg-c6 bg-gradient
         d-flex flex-wrap align-items-center justify-content-center"
       >
         {this.routes()}
-      </body>
+      </div>
     );
   }
 }

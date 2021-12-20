@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 export default class Footer extends Component {
   render() {
     return (
-      <footer className="py-3 my-4">
-        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+      <footer className="py-3 mt-4 mb-2">
+        <ul className="nav justify-content-center border-bottom pb-1 mb-3">
           <li className="nav-item">
             <a
               className="nav-link px-2 text-muted"
@@ -33,7 +33,7 @@ export default class Footer extends Component {
           tomei a decisão mais gratificante da minha vida, ambos com o mesmo nome:
           {' '}
           <a
-            className="link-dark"
+            className="link-styled"
             href="https://www.betrybe.com/"
             target="_blank"
             rel="noreferrer"

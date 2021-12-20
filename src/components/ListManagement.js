@@ -15,12 +15,12 @@ export default class ListManagement extends Component {
         <button
           type="button"
           onClick={ this.clearList }
-          className="col-6 btn-danger"
+          className="col-6 btn-n-danger"
         >
           Limpar lista
         </button>
         <button
-          className="col-6 btn-info"
+          className="col-6 btn-n-info"
           type="button"
         >
           Exibir Detalhes
