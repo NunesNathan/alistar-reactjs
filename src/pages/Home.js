@@ -27,7 +27,7 @@ export default class Home extends Component {
     event.preventDefault();
     const { inputValue } = this.state;
     if (inputValue) {
-      store.sendTasks({ task: inputValue, key: createKey(inputValue), desc: '' });
+      store.sendTasks({ task: inputValue, uniqKey: createKey(inputValue), desc: '' });
       this.setState({
         inputValue: '',
       });

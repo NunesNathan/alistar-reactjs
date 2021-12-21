@@ -17,7 +17,7 @@ export default class ItemList extends Component {
   }
 
   render() {
-    const { item, callback } = this.props;
+    const { task, callback, uniqKey } = this.props;
     return (
       <li
         className="
@@ -25,9 +25,9 @@ export default class ItemList extends Component {
         mb-2 pt-1"
       >
         <span className="text-center col-4">
-          { item }
+          { task }
         </span>
-        <ControlKeys callback={ callback } />
+        <ControlKeys callback={ callback } uniqKey={ uniqKey } />
         { this.showDescription() }
         <hr className="border-bottom-toHr" />
       </li>
@@ -36,7 +36,8 @@ export default class ItemList extends Component {
 }
 
 ItemList.propTypes = {
-  item: PropType.string.isRequired,
+  task: PropType.string.isRequired,
+  uniqKey: PropType.string.isRequired,
   callback: PropType.func.isRequired,
   enableDescs: PropType.bool.isRequired,
   description: PropType.string.isRequired,

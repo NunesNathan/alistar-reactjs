@@ -18,11 +18,10 @@ export default class List extends Component {
         {items
           && items.map((eachItem) => (
             <ItemList
-              key={ eachItem.key }
-              item={ eachItem.task }
+              { ...eachItem }
+              key={ eachItem.uniqKey }
               callback={ callback }
               enableDescs={ enableDescs }
-              description={ eachItem.desc }
             />
           ))}
       </ol>

@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import PropType from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import * as store from '../helpers/store';
 
 export default class ControlKeys extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      goTo: false,
+    };
+  }
+
   excludeButton = ({ target: { parentNode } }) => {
     const index = $('ol li').index(parentNode);
     store.deleteTask(index);
@@ -35,7 +44,16 @@ export default class ControlKeys extends Component {
     callback();
   }
 
+  redirectButton = () => {
+    this.setState({
+      goTo: true,
+    });
+  }
+
   render() {
+    const { goTo } = this.state;
+    const { uniqKey } = this.props;
+    const link = `/task_details/${uniqKey}`;
     return (
       <>
         <button
@@ -69,6 +87,8 @@ export default class ControlKeys extends Component {
         >
           { }
         </button>
+        {goTo
+          && <Redirect to={ link } />}
       </>
     );
   }
@@ -76,4 +96,5 @@ export default class ControlKeys extends Component {
 
 ControlKeys.propTypes = {
   callback: PropType.func.isRequired,
+  uniqKey: PropType.string.isRequired,
 };
