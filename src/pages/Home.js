@@ -9,7 +9,16 @@ export default class Home extends Component {
 
     this.state = {
       inputValue: '',
+      switcher: true,
     };
+  }
+
+  callback = () => {
+    this.setState({
+      switcher: false,
+    }, () => this.setState({
+      switcher: true,
+    }));
   }
 
   enterFunc = (event) => {
@@ -30,7 +39,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { inputValue } = this.state;
+    const { inputValue, switcher } = this.state;
     return (
       <main className="d-flex main flex-column col-12 align-items-center">
         <label
@@ -57,7 +66,8 @@ export default class Home extends Component {
             Listar!
           </button>
         </label>
-        <List items={ store.getTasks() } />
+        { switcher
+          && <List items={ store.getTasks() } callback={ this.callback } />}
         <ListManagement />
       </main>
     );

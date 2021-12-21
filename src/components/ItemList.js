@@ -4,7 +4,7 @@ import ControlKeys from './ControlKeys';
 
 export default class ItemList extends Component {
   render() {
-    const { item } = this.props;
+    const { item, callback } = this.props;
     return (
       <li
         className="
@@ -14,7 +14,7 @@ export default class ItemList extends Component {
         <span className="text-center col-4">
           { item }
         </span>
-        <ControlKeys />
+        <ControlKeys callback={ callback } />
         <hr className="border-bottom-toHr" />
       </li>
     );
@@ -23,4 +23,5 @@ export default class ItemList extends Component {
 
 ItemList.propTypes = {
   item: PropType.string.isRequired,
+  callback: PropType.func.isRequired,
 };
