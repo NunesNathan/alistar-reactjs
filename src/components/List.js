@@ -18,7 +18,7 @@ export default class List extends Component {
         {items
           && items.map((eachItem) => (
             <ItemList
-              key={ eachItem.task }
+              key={ eachItem.key }
               item={ eachItem.task }
               callback={ callback }
             />

@@ -4,9 +4,11 @@ import PropType from 'prop-types';
 import * as store from '../helpers/store';
 
 export default class ControlKeys extends Component {
-  excludeButton = ({ target }) => {
-    store.deleteTask($('ol li').index(target.parentNode));
-    target.parentNode.remove();
+  excludeButton = ({ target: { parentNode } }) => {
+    const index = $('ol li').index(parentNode);
+    store.deleteTask(index);
+    window.location.reload(false);
+    parentNode.remove();
   }
 
   moveButton = ({ target }) => {
@@ -36,6 +38,14 @@ export default class ControlKeys extends Component {
   render() {
     return (
       <>
+        <button
+          className="far fa-window-maximize btn-n-info mx-1 col-1"
+          type="button"
+          name="infos"
+          onClick={ this.moveButton }
+        >
+          { }
+        </button>
         <button
           className="fas fa-arrow-up btn-grey-7 mx-1 col-1"
           type="button"

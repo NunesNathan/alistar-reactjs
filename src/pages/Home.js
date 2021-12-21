@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from '../components/List';
 import ListManagement from '../components/ListManagement';
+import createKey from '../helpers/easiers';
 import * as store from '../helpers/store';
 
 export default class Home extends Component {
@@ -25,7 +26,7 @@ export default class Home extends Component {
     event.preventDefault();
     const { inputValue } = this.state;
     if (inputValue) {
-      store.sendTasks({ task: inputValue });
+      store.sendTasks({ task: inputValue, key: createKey(inputValue) });
       this.setState({
         inputValue: '',
       });

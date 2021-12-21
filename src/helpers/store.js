@@ -1,4 +1,5 @@
 export function sendTasks(task) {
+  console.log(task);
   let arr = JSON.parse(localStorage.getItem('tasks'));
   if (!arr) {
     arr = [];
