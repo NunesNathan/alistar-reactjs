@@ -4,7 +4,7 @@ import ControlKeys from './ControlKeys';
 
 export default class ItemList extends Component {
   showDescription = () => {
-    const { enableDescs, description } = this.props;
+    const { enableDescs, desc: description } = this.props;
     if (enableDescs) {
       if (description) {
         return (
@@ -40,5 +40,5 @@ ItemList.propTypes = {
   uniqKey: PropType.string.isRequired,
   callback: PropType.func.isRequired,
   enableDescs: PropType.bool.isRequired,
-  description: PropType.string.isRequired,
+  desc: PropType.string.isRequired,
 };
