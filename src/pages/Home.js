@@ -11,6 +11,7 @@ export default class Home extends Component {
     this.state = {
       inputValue: '',
       switcher: true,
+      enableDescs: false,
     };
   }
 
@@ -26,7 +27,7 @@ export default class Home extends Component {
     event.preventDefault();
     const { inputValue } = this.state;
     if (inputValue) {
-      store.sendTasks({ task: inputValue, key: createKey(inputValue) });
+      store.sendTasks({ task: inputValue, key: createKey(inputValue), desc: '' });
       this.setState({
         inputValue: '',
       });
@@ -39,8 +40,15 @@ export default class Home extends Component {
     });
   }
 
+  toggleDescription = () => {
+    const { enableDescs: oldValue } = this.state;
+    this.setState({
+      enableDescs: !oldValue,
+    });
+  }
+
   render() {
-    const { inputValue, switcher } = this.state;
+    const { inputValue, switcher, enableDescs } = this.state;
     return (
       <main className="d-flex main flex-column col-12 align-items-center">
         <label
@@ -68,8 +76,15 @@ export default class Home extends Component {
           </button>
         </label>
         { switcher
-          && <List items={ store.getTasks() } callback={ this.callback } />}
-        <ListManagement />
+          && <List
+            items={ store.getTasks() }
+            callback={ this.callback }
+            enableDescs={ enableDescs }
+          />}
+        <ListManagement
+          enableDescs={ enableDescs }
+          toggleDesc={ this.toggleDescription }
+        />
       </main>
     );
   }

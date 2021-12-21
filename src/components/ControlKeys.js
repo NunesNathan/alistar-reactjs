@@ -42,7 +42,7 @@ export default class ControlKeys extends Component {
           className="far fa-window-maximize btn-n-info mx-1 col-1"
           type="button"
           name="infos"
-          onClick={ this.moveButton }
+          onClick={ this.redirectButton }
         >
           { }
         </button>

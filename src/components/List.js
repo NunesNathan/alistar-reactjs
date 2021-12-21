@@ -4,7 +4,7 @@ import ItemList from './ItemList';
 
 export default class List extends Component {
   render() {
-    const { items, callback } = this.props;
+    const { items, callback, enableDescs } = this.props;
     return (
       <ol
         className="
@@ -21,6 +21,8 @@ export default class List extends Component {
               key={ eachItem.key }
               item={ eachItem.task }
               callback={ callback }
+              enableDescs={ enableDescs }
+              description={ eachItem.desc }
             />
           ))}
       </ol>
@@ -31,4 +33,5 @@ export default class List extends Component {
 List.propTypes = {
   items: PropType.arrayOf(PropType.object).isRequired,
   callback: PropType.func.isRequired,
+  enableDescs: PropType.bool.isRequired,
 };

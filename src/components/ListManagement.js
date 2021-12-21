@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 import $ from 'jquery';
 import * as store from '../helpers/store';
 
@@ -10,22 +11,31 @@ export default class ListManagement extends Component {
   }
 
   render() {
+    const { toggleDesc, enableDescs } = this.props;
     return (
       <div className="row order-3 d-flex">
         <button
+          className="col-6 btn-n-danger"
           type="button"
           onClick={ this.clearList }
-          className="col-6 btn-n-danger"
         >
           Limpar lista
         </button>
         <button
           className="col-6 btn-n-info"
           type="button"
+          onClick={ toggleDesc }
         >
-          Exibir Detalhes
+          {enableDescs
+            ? 'Esconder Detalhes'
+            : 'Exibir Detalhes' }
         </button>
       </div>
     );
   }
 }
+
+ListManagement.propTypes = {
+  toggleDesc: PropType.func.isRequired,
+  enableDescs: PropType.bool.isRequired,
+};
