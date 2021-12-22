@@ -14,33 +14,32 @@ export default class ControlKeys extends Component {
   }
 
   excludeButton = ({ target: { parentNode } }) => {
+    const { callback } = this.props;
     const index = $('ol li').index(parentNode);
     store.deleteTask(index);
-    window.location.reload(false);
+    callback();
     parentNode.remove();
   }
 
   moveButton = ({ target }) => {
     const { callback } = this.props;
 
-    const previous = $(target).parent().prev().find('span');
-    const next = $(target).parent().next().find('span');
-    const current = $(target).parent().find('span');
+    // Pensei outras maneiras de pegar o texto do span, mas quis forçar o jQuery
+    // I had another ways to get span text, but I prefer force jQuery
+    const previous = $('ol li').find(target).parent().prev()
+      .index() - 1;
+    const next = $('ol li').find(target).parent().next()
+      .index() - 1;
+    const current = $('ol li').find(target).parent().index() - 1;
 
     if (target.name === 'up') {
-      const [previousResult, currentResult] = [$(current).html(), $(previous).html()];
-      $(previous).text(previousResult);
-      $(current).text(currentResult);
+      store.changeTasksIndex(current, previous);
     }
 
     if (target.name === 'down') {
-      const [nextResult, currentResult] = [$(current).html(), $(next).html()];
-      $(next).text(nextResult);
-      $(current).text(currentResult);
+      store.changeTasksIndex(current, next);
     }
 
-    store.refreshTasks([]);
-    $('li > span').each((i, e) => store.sendTasks({ task: $(e).html() }));
     callback();
   }
 

@@ -84,6 +84,7 @@ export default class Home extends Component {
         <ListManagement
           enableDescs={ enableDescs }
           toggleDesc={ this.toggleDescription }
+          callback={ this.callback }
         />
       </main>
     );

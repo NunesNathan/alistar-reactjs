@@ -5,8 +5,7 @@ export default class TaskDetails extends Component {
   constructor() {
     super();
 
-    const task = store.getTask(window.location.pathname.match(/[^/]+$/)[0]);
-    console.log(task);
+    const task = store.getTaskByKey(window.location.pathname.match(/[^/]+$/)[0]);
     this.state = {
       task: task.task,
       uniqKey: task.uniqKey,
@@ -17,9 +16,9 @@ export default class TaskDetails extends Component {
   enterFunc = (event) => {
     event.preventDefault();
     const { desc, uniqKey } = this.state;
-    // if (desc !== oldDesc) {
-    store.replaceTaskInDetail(uniqKey, desc);
-    // }
+    if (desc) {
+      store.replaceTaskDetail(uniqKey, desc);
+    }
   }
 
   changeInput = ({ target: { value } }) => {

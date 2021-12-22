@@ -1,5 +1,9 @@
+export function getTasks() {
+  return JSON.parse(localStorage.getItem('tasks'));
+}
+
 export function sendTasks(task) {
-  let arr = JSON.parse(localStorage.getItem('tasks'));
+  let arr = getTasks();
   if (!arr) {
     arr = [];
   }
@@ -12,35 +16,34 @@ export function sendTasks(task) {
 }
 
 export function deleteTask(task) {
-  const arr = JSON.parse(localStorage.getItem('tasks'));
-  arr.splice(task, 1);
-  localStorage.setItem('tasks', JSON.stringify(arr));
+  if (task === 'all') {
+    localStorage.setItem('tasks', '[]');
+  } else {
+    const arr = getTasks();
+    arr.splice(task, 1);
+    localStorage.setItem('tasks', JSON.stringify(arr));
+  }
 }
 
-export function getTasks() {
-  return JSON.parse(localStorage.getItem('tasks'));
+export function getTaskByKey(pathKey) {
+  const arr = getTasks();
+  return arr.find(({ uniqKey }) => uniqKey === pathKey);
 }
 
-export function refreshTasks(arrOfTasks) {
-  localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
-}
-
-export function getTask(pathKey) {
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
-  return tasks.find(({ uniqKey }) => uniqKey === pathKey);
-}
-
-export function getTaskFromTaskName(taskName) {
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
-  return tasks.find(({ task }) => task === taskName);
-}
-
-export function replaceTaskInDetail(uniqKey, description) {
+export function replaceTaskDetail(uniqKey, description) {
   const arr = getTasks();
   arr.forEach((eachItem) => {
     if (eachItem.uniqKey === uniqKey) {
       eachItem.desc = description;
     }
   });
+  localStorage.setItem('tasks', JSON.stringify(arr));
+}
+
+export function changeTasksIndex(clickedIndex, targetIndex) {
+  const arr = getTasks();
+  if ((clickedIndex >= 0) && (targetIndex >= 0)) {
+    [arr[clickedIndex], arr[targetIndex]] = [arr[targetIndex], arr[clickedIndex]];
+  }
   localStorage.setItem('tasks', JSON.stringify(arr));
 }

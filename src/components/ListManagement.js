@@ -5,9 +5,10 @@ import * as store from '../helpers/store';
 
 export default class ListManagement extends Component {
   clearList = () => {
+    const { callback } = this.props;
     $('ol li').each((i, e) => e.remove());
-    store.refreshTasks([]);
-    window.location.reload(false);
+    store.deleteTask('all');
+    callback();
   }
 
   render() {
@@ -38,4 +39,5 @@ export default class ListManagement extends Component {
 ListManagement.propTypes = {
   toggleDesc: PropType.func.isRequired,
   enableDescs: PropType.bool.isRequired,
+  callback: PropType.func.isRequired,
 };
