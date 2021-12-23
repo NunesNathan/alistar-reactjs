@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 import * as store from '../helpers/store';
+import BackToHome from '../components/BackToHome';
 
 export default class TaskDetails extends Component {
   constructor() {
@@ -28,30 +30,45 @@ export default class TaskDetails extends Component {
   }
 
   render() {
+    const { callback } = this.props;
     const { task, desc } = this.state;
     return (
-      <main className="d-flex main flex-column col-12 align-items-start">
-        <h1 className="col-12 text-center">{`Detalhes da tarefa: "${task}"`}</h1>
-        <label className="d-flex justify-content-between offset-2" htmlFor="desc">
-          <p className="text-start">
-            Detalhes da tarefa:
-          </p>
-          <textarea
-            id="desc"
-            placeholder="descrição..."
-            value={ desc }
-            onChange={ this.changeInput }
-            className="mx-2 bg-grey-2"
-          />
-          <button
-            onClick={ this.enterFunc }
-            className="btn-n-outline-success px-2"
-            type="submit"
-          >
-            Button
-          </button>
-        </label>
+      <main className="d-grid container main">
+        <h1
+          className="
+          row text-center m-auto mb-4
+        "
+        >
+          {`Detalhes da tarefa: "${task}"`}
+
+        </h1>
+        <div className="row">
+          <label className="d-flex col-7 justify-content-center" htmlFor="desc">
+            <p className="text-start">
+              Detalhes da tarefa:
+            </p>
+            <textarea
+              id="desc"
+              placeholder="descrição..."
+              value={ desc }
+              onChange={ this.changeInput }
+              className="mx-2 bg-grey-2"
+            />
+            <button
+              onClick={ this.enterFunc }
+              className="btn-n-outline-success px-2"
+              type="submit"
+            >
+              Button
+            </button>
+          </label>
+          <BackToHome callback={ callback } />
+        </div>
       </main>
     );
   }
 }
+
+TaskDetails.propTypes = {
+  callback: PropType.func.isRequired,
+};

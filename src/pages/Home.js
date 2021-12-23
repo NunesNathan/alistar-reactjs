@@ -1,33 +1,29 @@
 import React, { Component } from 'react';
 import List from '../components/List';
 import ListManagement from '../components/ListManagement';
-import createKey from '../helpers/easiers';
+import * as easier from '../helpers/easiers';
 import * as store from '../helpers/store';
 
 export default class Home extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
+      ...props,
       inputValue: '',
-      switcher: true,
       enableDescs: false,
     };
-  }
-
-  callback = () => {
-    this.setState({
-      switcher: false,
-    }, () => this.setState({
-      switcher: true,
-    }));
   }
 
   enterFunc = (event) => {
     event.preventDefault();
     const { inputValue } = this.state;
     if (inputValue) {
-      store.sendTasks({ task: inputValue, uniqKey: createKey(inputValue), desc: '' });
+      store.sendTasks({
+        task: inputValue,
+        uniqKey: easier.createKey(inputValue),
+        desc: '',
+      });
       this.setState({
         inputValue: '',
       });
@@ -48,7 +44,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { inputValue, switcher, enableDescs } = this.state;
+    const { inputValue, callback, enableDescs } = this.state;
     return (
       <main className="d-flex main flex-column col-12 align-items-center">
         <label
@@ -75,16 +71,15 @@ export default class Home extends Component {
             Listar!
           </button>
         </label>
-        { switcher
-          && <List
-            items={ store.getTasks() }
-            callback={ this.callback }
-            enableDescs={ enableDescs }
-          />}
+        <List
+          items={ store.getTasks() }
+          callback={ callback }
+          enableDescs={ enableDescs }
+        />
         <ListManagement
           enableDescs={ enableDescs }
           toggleDesc={ this.toggleDescription }
-          callback={ this.callback }
+          callback={ callback }
         />
       </main>
     );

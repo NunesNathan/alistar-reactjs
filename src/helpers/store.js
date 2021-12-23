@@ -47,3 +47,13 @@ export function changeTasksIndex(clickedIndex, targetIndex) {
   }
   localStorage.setItem('tasks', JSON.stringify(arr));
 }
+
+export function getAllKeys() {
+  const arr = getTasks();
+  return arr.map(({ uniqKey }) => uniqKey);
+}
+
+export function getIndexByTaskName(taskName) {
+  const arr = getTasks();
+  return arr.findIndex(({ task }) => task === taskName);
+}

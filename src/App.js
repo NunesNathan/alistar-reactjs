@@ -6,22 +6,41 @@ import Home from './pages/Home';
 import TaskDetails from './pages/TaskDetails';
 
 export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      switcher: true,
+    };
+  }
+
+  callback = () => {
+    this.setState({
+      switcher: false,
+    }, () => this.setState({
+      switcher: true,
+    }));
+  }
+
   routes() {
+    const { switcher } = this.state;
     return (
       <Switch>
+        <Route
+          path="/task_details/:taskId"
+        >
+          <Header />
+          {switcher
+          && <TaskDetails callback={ this.callback } /> }
+          <Footer />
+        </Route>
         <Route
           path="/"
           exact
         >
           <Header />
-          <Home />
-          <Footer />
-        </Route>
-        <Route
-          path="/task_details/:taskId"
-        >
-          <Header />
-          <TaskDetails />
+          {switcher
+            && <Home callback={ this.callback } /> }
           <Footer />
         </Route>
       </Switch>
