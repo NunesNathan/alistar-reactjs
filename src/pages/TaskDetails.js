@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as store from '../helpers/store';
 import NavList from '../components/NavList';
+import Description from '../components/Description';
+import addBorderHome from '../helpers/event';
 
 export default class TaskDetails extends Component {
   constructor(props) {
@@ -11,6 +13,10 @@ export default class TaskDetails extends Component {
       ...task,
       ...props,
     };
+  }
+
+  componentDidMount() {
+    addBorderHome();
   }
 
   sendDescription = () => {
@@ -38,22 +44,11 @@ export default class TaskDetails extends Component {
           {`Tarefa: "${task}"`}
         </h1>
         <div className="row">
-          <label className="d-flex col-7 justify-content-center" htmlFor="desc">
-            Detalhes da tarefa:
-            <textarea
-              placeholder="descrição..."
-              value={ desc }
-              onChange={ this.getDescription }
-              className="mx-1 bg-grey-2"
-            />
-            <button
-              onClick={ this.sendDescription }
-              className="btn-n-outline-success"
-              type="button"
-            >
-              Submit
-            </button>
-          </label>
+          <Description
+            desc={ desc }
+            sendDescription={ this.sendDescription }
+            getDescription={ this.getDescription }
+          />
           <NavList reRender={ reRender } />
         </div>
       </main>);

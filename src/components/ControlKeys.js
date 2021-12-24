@@ -58,12 +58,12 @@ export default class ControlKeys extends Component {
     return (
       <>
         <button
-          className="far fa-window-maximize btn-n-info mx-0 col-1"
+          className="btn-n-info mx-0 col-1"
           type="button"
           name="infos"
           onClick={ this.redirectButton }
         >
-          { }
+          <i className="far fa-window-maximize" />
         </button>
         <button
           className="fas fa-arrow-up btn-grey-7 mx-1 col-1"

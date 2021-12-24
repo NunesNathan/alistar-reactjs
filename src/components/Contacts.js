@@ -4,9 +4,9 @@ export default class Contacts extends Component {
   render() {
     return (
       <ul className="nav justify-content-center border-bottom pb-1 mb-3">
-        <li className="nav-item">
+        <li className="nav-item text-center px-0">
           <a
-            className="nav-link px-2 text-muted"
+            className="nav-link p-1 text-muted"
             href="https://www.linkedin.com/in/nathannunes-/"
             target="_blank"
             rel="noreferrer"
@@ -14,9 +14,9 @@ export default class Contacts extends Component {
             Linkedin
           </a>
         </li>
-        <li className="nav-item">
+        <li className="nav-item text-center p-1">
           <a
-            className="nav-link px-2 text-muted"
+            className="nav-link p-1 text-muted"
             href="https://github.com/NunesNathan"
             target="_blank"
             rel="noreferrer"
@@ -24,9 +24,9 @@ export default class Contacts extends Component {
             GitHub
           </a>
         </li>
-        <li className="nav-item">
+        <li className="nav-item text-center p-1">
           <a
-            className="nav-link px-2 text-muted"
+            className="nav-link p-1 text-muted"
             href="https://nunesnathan.github.io/"
             target="_blank"
             rel="noreferrer"

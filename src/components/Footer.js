@@ -20,7 +20,8 @@ export default class Footer extends Component {
           <br />
         </p>
         <p className="text-center align-self-end post-text text-muted">
-          Conteúdo compilado por Nathan Nunes, 2021.
+          {` 2021 > Feito por Nathan Nunes,
+         com React, FontAwesome, uniqID, jQuery e 💚.`}
         </p>
       </footer>
     );

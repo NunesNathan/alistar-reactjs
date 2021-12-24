@@ -4,7 +4,7 @@
   --neithans-n-danger: #CA484A;
   --neithans-n-warning: #DDD11E;
   --neithans-n-info: #6B92AB;
-  --neithans-n-success: #52b788;
+  --neithans-n-success: #90917e;
   --neithans-grey-0: #ebebeb;
   --neithans-grey-1: #e0e0e0;
   --neithans-grey-2: #cdcdcd;
@@ -19,7 +19,7 @@
   --neithans-n-danger-rgb: 202, 72, 74;
   --neithans-n-warning-rgb: 221, 209, 30;
   --neithans-n-info-rgb: 107, 146, 171;
-  --neithans-n-success-rgb: 82, 183, 136;
+  --neithans-n-success-rgb: 144, 145, 126;
   --neithans-grey-0-rgb: 235, 235, 235;
   --neithans-grey-1-rgb: 224, 224, 224;
   --neithans-grey-2-rgb: 199, 199, 199;
@@ -150,4 +150,35 @@ footer {
 
 .post-text {
   font-size: 0.75rem;
+}
+
+.nav-link {
+  color: var(--neithans-grey-3);
+  width: 7.5rem;
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--neithans-grey-7);
+}
+
+.nav-link:hover {
+  color: var(--neithans-grey-5);
+}
+
+.submit-desc-button {
+  padding-top: 1rem;
+}
+
+#desc {
+  width: 10rem;
+  height: 100%;
+  max-height: 4.6rem;
+}
+
+label > p {
+  font-size: 1.4rem;
+}
+
+.border-none {
+  color: var(--neithans-grey-5);
 }

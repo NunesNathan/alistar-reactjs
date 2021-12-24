@@ -14,7 +14,7 @@ export default class ListManagement extends Component {
   render() {
     const { switchDescription, showDescription } = this.props;
     return (
-      <div className="row d-flex mb-4">
+      <div className="row d-flex mt-2 mb-4">
         <button
           className="col-6 btn-n-danger"
           type="button"

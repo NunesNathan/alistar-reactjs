@@ -9,9 +9,13 @@ export default function NavList({ reRender }) {
   const { push } = useHistory();
 
   return (
-    <nav className="nav nav-pills col-2 offset-2 flex-column">
-      <button className="nav-link" type="button" onClick={ () => push('/') }>
-        Go home
+    <div className="nav nav-pills col-2 offset-2 flex-column">
+      <button
+        className="nav-link"
+        type="button"
+        onClick={ () => push('/') }
+      >
+        <i className="fas fa-home" />
       </button>
       {allTasks
           && allTasks.map(({ uniqKey, ...task }) => (
@@ -23,7 +27,7 @@ export default function NavList({ reRender }) {
               history={ push }
             />
           ))}
-    </nav>
+    </div>
   );
 }
 

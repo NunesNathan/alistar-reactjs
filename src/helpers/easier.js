@@ -7,8 +7,8 @@ export function createKey(taskName) {
 
 export function buttonIsActive(pathWithId) {
   return window.location.pathname !== pathWithId
-    ? 'nav-link'
-    : 'nav-link active';
+    ? 'nav-link col-2'
+    : 'nav-link col-2 active';
 }
 
 export function getPathLink(uniqKey) {
