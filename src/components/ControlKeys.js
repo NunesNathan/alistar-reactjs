@@ -31,10 +31,10 @@ export default class ControlKeys extends Component {
     // Pensei outras maneiras de pegar o texto do span, mas quis forçar o jQuery
     // I had another ways to get span text, but I prefer force jQuery
     const previous = $('ol li').find(target).parent().prev()
-      .index() - 1;
+      .index();
     const next = $('ol li').find(target).parent().next()
-      .index() - 1;
-    const current = $('ol li').find(target).parent().index() - 1;
+      .index();
+    const current = $('ol li').find(target).parent().index();
 
     if (target.name === 'up') {
       store.changeTasksIndex(current, previous);
