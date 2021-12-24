@@ -58,6 +58,7 @@ export default class Home extends Component {
             value={ inputValue }
             onChange={ this.getTaskName }
             id="taskInput"
+            name="taskInput"
           />
           <button
             className="btn-n-outline-success col-3"

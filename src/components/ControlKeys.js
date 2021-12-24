@@ -63,7 +63,7 @@ export default class ControlKeys extends Component {
           name="infos"
           onClick={ this.redirectButton }
         >
-          <i className="far fa-window-maximize" />
+          <i className="fas fa-pencil-alt" />
         </button>
         <button
           className="fas fa-arrow-up btn-grey-7 mx-1 col-1"

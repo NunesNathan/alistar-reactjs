@@ -87,14 +87,15 @@ footer {
   border-color: var(--neithans-grey-7);
 }
 
-.btn-n-outline-success {
-  color: var(--neithans-n-success);
-  background-color: var(--neithans-grey-2);
-  border-color: var(--neithans-n-success);
-}
 .btn-n-outline-success:hover {
-  color: var(--neithans-grey-2);
+  color: var(--neithans-n-success);
+  background-color: var(--neithans-grey-9);
+}
+.btn-n-outline-success {
+  color: var(--neithans-grey-9);
   background-color: var(--neithans-n-success);
+  border-color: var(--neithans-n-success);
+
 }
 
 .btn-n-danger {
