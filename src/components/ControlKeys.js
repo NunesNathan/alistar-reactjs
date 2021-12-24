@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-import PropType from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import PropType from 'prop-types';
+import $ from 'jquery';
 import * as store from '../helpers/store';
+import { getPathLink } from '../helpers/easier';
 
 export default class ControlKeys extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
+    const { uniqKey, ...proper } = props;
     this.state = {
       goTo: false,
+      ...proper,
+      link: getPathLink(uniqKey),
     };
   }
 
   excludeButton = ({ target: { parentNode } }) => {
-    const { callback } = this.props;
+    const { reRender } = this.state;
     const index = $('ol li').index(parentNode);
     store.deleteTask(index);
-    callback();
+    reRender();
     parentNode.remove();
   }
 
   moveButton = ({ target }) => {
-    const { callback } = this.props;
+    const { reRender } = this.state;
 
     // Pensei outras maneiras de pegar o texto do span, mas quis forçar o jQuery
     // I had another ways to get span text, but I prefer force jQuery
@@ -40,7 +44,7 @@ export default class ControlKeys extends Component {
       store.changeTasksIndex(current, next);
     }
 
-    callback();
+    reRender();
   }
 
   redirectButton = () => {
@@ -50,13 +54,11 @@ export default class ControlKeys extends Component {
   }
 
   render() {
-    const { goTo } = this.state;
-    const { uniqKey } = this.props;
-    const link = `/task_details/${uniqKey}`;
+    const { goTo, link } = this.state;
     return (
       <>
         <button
-          className="far fa-window-maximize btn-n-info mx-1 col-1"
+          className="far fa-window-maximize btn-n-info mx-0 col-1"
           type="button"
           name="infos"
           onClick={ this.redirectButton }
@@ -94,6 +96,5 @@ export default class ControlKeys extends Component {
 }
 
 ControlKeys.propTypes = {
-  callback: PropType.func.isRequired,
   uniqKey: PropType.string.isRequired,
 };

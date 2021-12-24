@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropType from 'prop-types';
 import ControlKeys from './ControlKeys';
 
-export default class ItemList extends Component {
-  showDescription = () => {
-    const { enableDescs, desc: description } = this.props;
-    if (enableDescs) {
+export default class TaskItem extends Component {
+  toggleDescription = () => {
+    const { showDescription, desc: description } = this.props;
+    if (showDescription) {
       if (description) {
         return (
           <p className="text-center">
@@ -17,28 +17,28 @@ export default class ItemList extends Component {
   }
 
   render() {
-    const { task, callback, uniqKey } = this.props;
+    const { task, reRender, uniqKey } = this.props;
     return (
       <li
-        className="
-        row col-8 d-flex mx-auto justify-content-center
+        className=" row col-8 d-flex
+        mx-auto justify-content-center
         mb-2 pt-1"
       >
         <span className="text-center col-4">
           { task }
         </span>
-        <ControlKeys callback={ callback } uniqKey={ uniqKey } />
-        { this.showDescription() }
+        <ControlKeys reRender={ reRender } uniqKey={ uniqKey } />
+        { this.toggleDescription() }
         <hr className="border-bottom-toHr" />
       </li>
     );
   }
 }
 
-ItemList.propTypes = {
+TaskItem.propTypes = {
   task: PropType.string.isRequired,
   uniqKey: PropType.string.isRequired,
-  callback: PropType.func.isRequired,
-  enableDescs: PropType.bool.isRequired,
+  reRender: PropType.func.isRequired,
+  showDescription: PropType.bool.isRequired,
   desc: PropType.string.isRequired,
 };

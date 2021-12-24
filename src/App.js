@@ -14,7 +14,7 @@ export default class App extends Component {
     };
   }
 
-  callback = () => {
+  reRender = () => {
     this.setState({
       switcher: false,
     }, () => this.setState({
@@ -27,20 +27,20 @@ export default class App extends Component {
     return (
       <Switch>
         <Route
-          path="/task_details/:taskId"
-        >
-          <Header />
-          {switcher
-          && <TaskDetails callback={ this.callback } /> }
-          <Footer />
-        </Route>
-        <Route
           path="/"
           exact
         >
           <Header />
           {switcher
-            && <Home callback={ this.callback } /> }
+            && <Home reRender={ this.reRender } />}
+          <Footer />
+        </Route>
+        <Route
+          path="/task_details/:taskId"
+        >
+          <Header />
+          {switcher
+          && <TaskDetails reRender={ this.reRender } /> }
           <Footer />
         </Route>
       </Switch>
@@ -51,9 +51,9 @@ export default class App extends Component {
     return (
       <div
         className="
-        d-flex flex-wrap align-items-center justify-content-center"
+        d-flex flex-wrap justify-content-center"
       >
-        {this.routes()}
+        { this.routes() }
       </div>
     );
   }

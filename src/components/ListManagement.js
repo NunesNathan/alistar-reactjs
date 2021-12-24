@@ -5,16 +5,16 @@ import * as store from '../helpers/store';
 
 export default class ListManagement extends Component {
   clearList = () => {
-    const { callback } = this.props;
+    const { reRender } = this.props;
     $('ol li').each((i, e) => e.remove());
     store.deleteTask('all');
-    callback();
+    reRender();
   }
 
   render() {
-    const { toggleDesc, enableDescs } = this.props;
+    const { switchDescription, showDescription } = this.props;
     return (
-      <div className="row order-3 d-flex">
+      <div className="row d-flex mb-4">
         <button
           className="col-6 btn-n-danger"
           type="button"
@@ -25,9 +25,9 @@ export default class ListManagement extends Component {
         <button
           className="col-6 btn-n-info"
           type="button"
-          onClick={ toggleDesc }
+          onClick={ switchDescription }
         >
-          {enableDescs
+          {showDescription
             ? 'Esconder Detalhes'
             : 'Exibir Detalhes' }
         </button>
@@ -37,7 +37,7 @@ export default class ListManagement extends Component {
 }
 
 ListManagement.propTypes = {
-  toggleDesc: PropType.func.isRequired,
-  enableDescs: PropType.bool.isRequired,
-  callback: PropType.func.isRequired,
+  switchDescription: PropType.func.isRequired,
+  showDescription: PropType.bool.isRequired,
+  reRender: PropType.func.isRequired,
 };

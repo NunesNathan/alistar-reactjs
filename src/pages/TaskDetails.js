@@ -1,37 +1,33 @@
 import React, { Component } from 'react';
-import PropType from 'prop-types';
 import * as store from '../helpers/store';
-import BackToHome from '../components/BackToHome';
+import NavList from '../components/NavList';
 
 export default class TaskDetails extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
-    const task = store.getTaskByKey(window.location.pathname.match(/[^/]+$/)[0]);
+    const task = store.getTaskByKey();
     this.state = {
-      task: task.task,
-      uniqKey: task.uniqKey,
-      desc: task.desc,
+      ...task,
+      ...props,
     };
   }
 
-  enterFunc = (event) => {
-    event.preventDefault();
+  sendDescription = () => {
     const { desc, uniqKey } = this.state;
     if (desc) {
-      store.replaceTaskDetail(uniqKey, desc);
+      store.replaceTaskDescription(uniqKey, desc);
     }
   }
 
-  changeInput = ({ target: { value } }) => {
+  getDescription = ({ target: { value } }) => {
     this.setState({
       desc: value,
     });
   }
 
   render() {
-    const { callback } = this.props;
-    const { task, desc } = this.state;
+    const { task, desc, reRender } = this.state;
     return (
       <main className="d-grid container main">
         <h1
@@ -39,36 +35,27 @@ export default class TaskDetails extends Component {
           row text-center m-auto mb-4
         "
         >
-          {`Detalhes da tarefa: "${task}"`}
-
+          {`Tarefa: "${task}"`}
         </h1>
         <div className="row">
           <label className="d-flex col-7 justify-content-center" htmlFor="desc">
-            <p className="text-start">
-              Detalhes da tarefa:
-            </p>
+            Detalhes da tarefa:
             <textarea
-              id="desc"
               placeholder="descrição..."
               value={ desc }
-              onChange={ this.changeInput }
-              className="mx-2 bg-grey-2"
+              onChange={ this.getDescription }
+              className="mx-1 bg-grey-2"
             />
             <button
-              onClick={ this.enterFunc }
-              className="btn-n-outline-success px-2"
-              type="submit"
+              onClick={ this.sendDescription }
+              className="btn-n-outline-success"
+              type="button"
             >
-              Button
+              Submit
             </button>
           </label>
-          <BackToHome callback={ callback } />
+          <NavList reRender={ reRender } />
         </div>
-      </main>
-    );
+      </main>);
   }
 }
-
-TaskDetails.propTypes = {
-  callback: PropType.func.isRequired,
-};

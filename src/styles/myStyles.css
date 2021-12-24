@@ -138,12 +138,16 @@ footer {
 }
 
 .form-control {
-  margin: 0 1%;
+  border-color: var(--neithans-grey-5);
+  border-right-color: transparent !important;
 }
 
 .form-control:focus {
   color: #212529;
   border-color: var(--neithans-grey-7);
   box-shadow: 0 0;
-  margin: 0 0.3%;
+}
+
+.post-text {
+  font-size: 0.75rem;
 }

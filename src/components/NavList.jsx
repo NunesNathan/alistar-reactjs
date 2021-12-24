@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import PropType from 'prop-types';
+import NavItem from './NavItem';
+import * as store from '../helpers/store';
 
-export default class NavList extends Component {
-  constructor(props) {
-    super();
+export default function NavList({ reRender }) {
+  const allTasks = store.getTasks();
+  const { push } = useHistory();
 
-    this.state = { ...props };
-  }
-
-  navigate = () => {
-    const { uniqKey, history, callback } = this.state;
-    const link = `/task_details/${uniqKey}`;
-    history(link);
-    callback();
-  }
-
-  render() {
-    const { task } = this.state;
-    return (
-      <button
-        type="button"
-        onClick={ this.navigate }
-      >
-        {task}
+  return (
+    <nav className="nav nav-pills col-2 offset-2 flex-column">
+      <button className="nav-link" type="button" onClick={ () => push('/') }>
+        Go home
       </button>
-    );
-  }
+      {allTasks
+          && allTasks.map(({ uniqKey, ...task }) => (
+            <NavItem
+              key={ uniqKey }
+              link={ `/task_details/${uniqKey}` }
+              { ...task }
+              reRender={ reRender }
+              history={ push }
+            />
+          ))}
+    </nav>
+  );
 }
+
+NavList.propTypes = {
+  reRender: PropType.func.isRequired,
+};

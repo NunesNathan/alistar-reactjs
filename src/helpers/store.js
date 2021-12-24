@@ -2,58 +2,54 @@ export function getTasks() {
   return JSON.parse(localStorage.getItem('tasks'));
 }
 
+export function setTasks(TaskList) {
+  localStorage.setItem('tasks', JSON.stringify(TaskList));
+}
+
 export function sendTasks(task) {
-  let arr = getTasks();
-  if (!arr) {
-    arr = [];
+  let taskArray = getTasks();
+  if (!taskArray) {
+    taskArray = [];
   }
-  if (!arr[0]) {
-    arr[0] = task;
+  if (!taskArray[0]) {
+    taskArray[0] = task;
   } else {
-    arr.push(task);
+    taskArray.push(task);
   }
-  localStorage.setItem('tasks', JSON.stringify(arr));
+  setTasks(taskArray);
 }
 
 export function deleteTask(task) {
   if (task === 'all') {
     localStorage.setItem('tasks', '[]');
   } else {
-    const arr = getTasks();
-    arr.splice(task, 1);
-    localStorage.setItem('tasks', JSON.stringify(arr));
+    const taskArray = getTasks();
+    taskArray.splice(task, 1);
+    setTasks(taskArray);
   }
 }
 
-export function getTaskByKey(pathKey) {
-  const arr = getTasks();
-  return arr.find(({ uniqKey }) => uniqKey === pathKey);
+export function getTaskByKey() {
+  const pathId = window.location.pathname.match(/[^/]+$/)[0];
+  const taskArray = getTasks();
+  return taskArray.find(({ uniqKey }) => uniqKey === pathId);
 }
 
-export function replaceTaskDetail(uniqKey, description) {
-  const arr = getTasks();
-  arr.forEach((eachItem) => {
+export function replaceTaskDescription(uniqKey, description) {
+  const taskArray = getTasks();
+  taskArray.forEach((eachItem) => {
     if (eachItem.uniqKey === uniqKey) {
       eachItem.desc = description;
     }
   });
-  localStorage.setItem('tasks', JSON.stringify(arr));
+  setTasks(taskArray);
 }
 
 export function changeTasksIndex(clickedIndex, targetIndex) {
-  const arr = getTasks();
+  const taskArray = getTasks();
   if ((clickedIndex >= 0) && (targetIndex >= 0)) {
-    [arr[clickedIndex], arr[targetIndex]] = [arr[targetIndex], arr[clickedIndex]];
+    [taskArray[clickedIndex], taskArray[targetIndex]] = (
+      [taskArray[targetIndex], taskArray[clickedIndex]]);
   }
-  localStorage.setItem('tasks', JSON.stringify(arr));
-}
-
-export function getAllKeys() {
-  const arr = getTasks();
-  return arr.map(({ uniqKey }) => uniqKey);
-}
-
-export function getIndexByTaskName(taskName) {
-  const arr = getTasks();
-  return arr.findIndex(({ task }) => task === taskName);
+  setTasks(taskArray);
 }
