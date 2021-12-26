@@ -12,11 +12,12 @@ export default class Home extends Component {
       ...props,
       inputValue: '',
       showDescription: false,
+      tasks: store.getTasks(),
     };
   }
 
   sendTask = () => {
-    const { inputValue } = this.state;
+    const { inputValue, reRender } = this.state;
     if (inputValue) {
       store.sendTasks({
         task: inputValue,
@@ -26,6 +27,7 @@ export default class Home extends Component {
       this.setState({
         inputValue: '',
       });
+      reRender();
     }
   }
 
@@ -43,9 +45,9 @@ export default class Home extends Component {
   }
 
   render() {
-    const { inputValue, reRender, showDescription } = this.state;
+    const { inputValue, reRender, showDescription, tasks } = this.state;
     return (
-      <main className="d-flex main flex-column container align-items-center">
+      <main className="d-flex flex-column container align-items-center">
         <p className="text-center display-5">Afazeres:</p>
         <label
           className="flex-wrap d-flex input-group
@@ -73,11 +75,12 @@ export default class Home extends Component {
           switchDescription={ this.switchDescription }
           reRender={ reRender }
         />
-        <TaskList
-          tasks={ store.getTasks() }
-          reRender={ reRender }
-          showDescription={ showDescription }
-        />
+        {tasks
+          && <TaskList
+            tasks={ tasks }
+            reRender={ reRender }
+            showDescription={ showDescription }
+          />}
       </main>
     );
   }

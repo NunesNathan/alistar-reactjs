@@ -44,12 +44,12 @@ export default class TaskDetails extends Component {
           {`Tarefa: "${task}"`}
         </h1>
         <div className="row">
+          <NavList reRender={ reRender } />
           <Description
             desc={ desc }
             sendDescription={ this.sendDescription }
             getDescription={ this.getDescription }
           />
-          <NavList reRender={ reRender } />
         </div>
       </main>);
   }

@@ -9,7 +9,7 @@ export default function NavList({ reRender }) {
   const { push } = useHistory();
 
   return (
-    <div className="nav nav-pills col-2 offset-2 flex-column">
+    <div className="nav nav-pills col-2 mx-4 flex-column">
       <button
         className="nav-link"
         type="button"

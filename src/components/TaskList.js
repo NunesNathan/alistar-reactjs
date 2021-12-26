@@ -10,14 +10,15 @@ export default class TaskList extends Component {
         className=" container
         justify-content-center mb-5"
       >
-        {tasks
-          && tasks.map((eachTask) => (
+        {
+          tasks.map((eachTask) => (
             <TaskItem
               { ...eachTask }
               key={ eachTask.uniqKey }
               reRender={ reRender }
               showDescription={ showDescription }
-            />))}
+            />))
+        }
       </ol>
     );
   }

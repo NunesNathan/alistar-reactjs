@@ -16,13 +16,6 @@ export default class ListManagement extends Component {
     return (
       <div className="row d-flex mt-2 mb-4">
         <button
-          className="col-6 btn-n-danger"
-          type="button"
-          onClick={ this.clearList }
-        >
-          Limpar lista
-        </button>
-        <button
           className="col-6 btn-n-info"
           type="button"
           onClick={ switchDescription }
@@ -30,6 +23,13 @@ export default class ListManagement extends Component {
           {showDescription
             ? 'Esconder Detalhes'
             : 'Exibir Detalhes' }
+        </button>
+        <button
+          className="col-6 btn-n-danger"
+          type="button"
+          onClick={ this.clearList }
+        >
+          Limpar lista
         </button>
       </div>
     );
