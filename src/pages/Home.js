@@ -67,7 +67,7 @@ export default class Home extends Component {
             type="button"
             onClick={ this.sendTask }
           >
-            List it!
+            Listar!
           </button>
         </label>
         <ListManagement

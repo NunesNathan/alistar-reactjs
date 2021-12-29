@@ -89,10 +89,10 @@ footer {
 
 .btn-n-outline-success:hover {
   color: var(--neithans-n-success);
-  background-color: var(--neithans-grey-9);
+  background-color: var(--neithans-grey-8);
 }
 .btn-n-outline-success {
-  color: var(--neithans-grey-9);
+  color: var(--neithans-grey-8);
   background-color: var(--neithans-n-success);
   border-color: var(--neithans-n-success);
 

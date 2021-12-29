@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
-import $ from 'jquery';
-import * as store from '../helpers/store';
+import { Button } from 'react-bootstrap';
+import { removeClasses } from '../helpers/event';
+import ClearListModal from './ClearListModal';
 
 export default class ListManagement extends Component {
-  clearList = () => {
-    const { reRender } = this.props;
-    $('ol li').each((i, e) => e.remove());
-    store.deleteTask('all');
-    reRender();
+  constructor() {
+    super();
+
+    this.state = { toClear: false };
+  }
+
+  componentDidMount() {
+    removeClasses();
+  }
+
+  showClearListModal = () => {
+    const { toClear } = this.state;
+
+    this.setState({
+      toClear: !toClear,
+    });
   }
 
   render() {
-    const { switchDescription, showDescription } = this.props;
+    const { switchDescription, showDescription, reRender } = this.props;
+    const { toClear } = this.state;
     return (
       <div className="row d-flex mt-2 mb-4">
         <button
@@ -24,13 +37,19 @@ export default class ListManagement extends Component {
             ? 'Esconder Detalhes'
             : 'Exibir Detalhes' }
         </button>
-        <button
+        <Button
+          id="clearButton"
           className="col-6 btn-n-danger"
           type="button"
-          onClick={ this.clearList }
+          onClick={ this.showClearListModal }
         >
           Limpar lista
-        </button>
+        </Button>
+        <ClearListModal
+          reRender={ reRender }
+          showClearListModal={ this.showClearListModal }
+          toClear={ toClear }
+        />
       </div>
     );
   }

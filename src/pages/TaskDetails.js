@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as store from '../helpers/store';
 import NavList from '../components/NavList';
 import Description from '../components/Description';
-import addBorderHome from '../helpers/event';
+import { addBorderHome } from '../helpers/event';
 
 export default class TaskDetails extends Component {
   constructor(props) {
