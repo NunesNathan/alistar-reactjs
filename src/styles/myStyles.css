@@ -139,12 +139,13 @@ footer {
 }
 
 .form-control {
+  color: var(--neithans-grey-6);
   border-color: var(--neithans-grey-5);
   border-right-color: transparent !important;
 }
 
 .form-control:focus {
-  color: #212529;
+  color: var(--neithans-grey-6);
   border-color: var(--neithans-grey-7);
   box-shadow: 0 0;
 }
@@ -182,4 +183,27 @@ label > p {
 
 .border-none {
   color: var(--neithans-grey-5);
+}
+
+#dayNum, #mounthsNum, #years {
+  height: 5vh;
+  max-height: 4.6rem;
+  width: 3.19rem;
+  align-self: center;
+  margin: 0 0.05rem;
+  background-color: var(--neithans-grey-2);
+  color: var(--neithans-grey-6);
+}
+
+option {
+  background-color: var(--neithans-grey-2);
+  color: var(--neithans-grey-6);
+}
+
+#years {
+  width: 4rem;;
+}
+
+.pp {
+  font-size: 1.4rem;
 }

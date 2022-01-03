@@ -4,16 +4,21 @@ import ControlKeys from './ControlKeys';
 
 export default class TaskItem extends Component {
   toggleDescription = () => {
-    const { showDescription, desc: description } = this.props;
-    if (showDescription) {
-      if (description) {
-        return (
-          <p className="text-center">
-            {description}
-          </p>);
-      }
-      return (<p className="text-center">Você ainda não definiu uma descrição!</p>);
+    const { showDescription, desc: description, createdOn,
+      deadline } = this.props;
+    const details = [`Criado em: ${createdOn}`, description, `Prazo: ${deadline}`];
+    if (!description) {
+      details[1] = 'Você ainda não definiu uma descrição!';
     }
+    if (!deadline) {
+      details.pop();
+    }
+    return (showDescription)
+      ? (details.map((detail, index) => (
+        <p key={ index } className="text-center">
+          {detail}
+        </p>)))
+      : null;
   }
 
   render() {
@@ -28,7 +33,9 @@ export default class TaskItem extends Component {
           { task }
         </span>
         <ControlKeys reRender={ reRender } uniqKey={ uniqKey } />
-        { this.toggleDescription() }
+        <div className="mt-4 px-0 row">
+          { this.toggleDescription() }
+        </div>
         <hr className="border-bottom-toHr" />
       </li>
     );
@@ -41,4 +48,6 @@ TaskItem.propTypes = {
   reRender: PropType.func.isRequired,
   showDescription: PropType.bool.isRequired,
   desc: PropType.string.isRequired,
+  createdOn: PropType.string.isRequired,
+  deadline: PropType.string.isRequired,
 };

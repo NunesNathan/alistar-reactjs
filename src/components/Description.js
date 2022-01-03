@@ -5,7 +5,7 @@ export default class Description extends Component {
   render() {
     const { desc, sendDescription, getDescription } = this.props;
     return (
-      <div className="col-7">
+      <div className="my-2">
         <label
           className="d-flex
            justify-content-center label-desc"

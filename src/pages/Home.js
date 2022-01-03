@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TaskList from '../components/TaskList';
 import ListManagement from '../components/ListManagement';
-import { createKey } from '../helpers/easier';
+import { createKey, newDate } from '../helpers/easier';
 import * as store from '../helpers/store';
 
 export default class Home extends Component {
@@ -23,6 +23,8 @@ export default class Home extends Component {
         task: inputValue,
         uniqKey: createKey(inputValue),
         desc: '',
+        createdOn: newDate(),
+        deadline: '',
       });
       this.setState({
         inputValue: '',

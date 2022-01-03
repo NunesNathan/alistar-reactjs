@@ -45,6 +45,16 @@ export function replaceTaskDescription(uniqKey, description) {
   setTasks(taskArray);
 }
 
+export function replaceTaskDeadline(uniqKey, deadline) {
+  const taskArray = getTasks();
+  taskArray.forEach((eachItem) => {
+    if (eachItem.uniqKey === uniqKey) {
+      eachItem.deadline = deadline;
+    }
+  });
+  setTasks(taskArray);
+}
+
 export function changeTasksIndex(clickedIndex, targetIndex) {
   const taskArray = getTasks();
   if ((clickedIndex >= 0) && (targetIndex >= 0)) {
