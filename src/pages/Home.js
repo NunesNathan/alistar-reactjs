@@ -5,11 +5,10 @@ import { createKey, newDate } from '../helpers/easier';
 import * as store from '../helpers/store';
 
 export default class Home extends Component {
-  constructor(props) {
+  constructor() {
     super();
 
     this.state = {
-      ...props,
       inputValue: '',
       showDescription: false,
       tasks: store.getTasks(),
@@ -17,7 +16,7 @@ export default class Home extends Component {
   }
 
   sendTask = () => {
-    const { inputValue, reRender } = this.state;
+    const { inputValue } = this.state;
     if (inputValue) {
       store.sendTasks({
         task: inputValue,
@@ -29,7 +28,6 @@ export default class Home extends Component {
       this.setState({
         inputValue: '',
       });
-      reRender();
     }
   }
 
@@ -47,7 +45,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { inputValue, reRender, showDescription, tasks } = this.state;
+    const { inputValue, showDescription, tasks } = this.state;
     return (
       <main className="d-flex flex-column container align-items-center">
         <p className="text-center display-5">Afazeres:</p>
@@ -75,12 +73,10 @@ export default class Home extends Component {
         <ListManagement
           showDescription={ showDescription }
           switchDescription={ this.switchDescription }
-          reRender={ reRender }
         />
         {tasks
           && <TaskList
             tasks={ tasks }
-            reRender={ reRender }
             showDescription={ showDescription }
           />}
       </main>
