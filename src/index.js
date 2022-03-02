@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AListarApp from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AListarApp />
   </React.StrictMode>,
   document.querySelector('#root'),
 );

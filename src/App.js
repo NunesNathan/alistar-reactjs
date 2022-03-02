@@ -3,7 +3,7 @@ import aListarRouter from './helpers/services';
 import './styles/bootstrap.css';
 import './styles/myStyles.css';
 
-const App = () => (
+const AListarApp = () => (
   <div
     className="d-flex flex-wrap
     justify-content-center"
@@ -12,4 +12,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default AListarApp;
