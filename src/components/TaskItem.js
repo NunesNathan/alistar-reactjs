@@ -1,7 +1,8 @@
 import React from 'react';
+import PropType from 'prop-types';
 import ControlKeys from './ControlKeys';
 
-export default function tskintem(
+export default function TaskItem(
   { task, uniqKey, desc: description, createdOn, deadline },
 ) {
   const { showDescription } = useContext(TaskContext);
@@ -39,3 +40,11 @@ export default function tskintem(
     </li>
   );
 }
+
+TaskItem.propTypes = {
+  task: PropType.string.isRequired,
+  uniqKey: PropType.string.isRequired,
+  desc: PropType.string.isRequired,
+  createdOn: PropType.string.isRequired,
+  deadline: PropType.string.isRequired,
+};
