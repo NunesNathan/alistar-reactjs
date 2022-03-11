@@ -1,38 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropType from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { buttonIsActive } from '../helpers/easier';
 
-export default class NavItem extends Component {
-  constructor(props) {
-    super();
+export default function NavItem({ link, task }) {
+  const classList = buttonIsActive(link);
+  const { push } = useHistory();
 
-    const { link } = props;
-    this.state = {
-      ...props,
-      classList: buttonIsActive(link),
-    };
-  }
-
-  navigate = () => {
-    const { history, reRender, link } = this.state;
-    history(link);
-    reRender();
-  }
-
-  render() {
-    const { task, classList } = this.state;
-    return (
-      <button
-        className={ classList }
-        type="button"
-        onClick={ this.navigate }
-      >
-        {task}
-      </button>
-    );
-  }
+  return (
+    <button
+      className={ classList }
+      type="button"
+      onClick={ () => push(link) }
+    >
+      {task}
+    </button>
+  );
 }
 
 NavItem.propTypes = {
   link: PropType.string.isRequired,
+  task: PropType.string.isRequired,
 };

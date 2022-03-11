@@ -2,11 +2,11 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import renderWithRouter from '../mocks/renderWithRouter';
-import App from '../../App';
+import AListarApp from '../../App';
 
 describe('1 - Render Home', () => {
   beforeEach(() => {
-    renderWithRouter(<App />);
+    renderWithRouter(<AListarApp />);
   });
 
   it('1.1 - Render title list.', () => {
