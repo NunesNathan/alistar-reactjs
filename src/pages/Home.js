@@ -12,6 +12,10 @@ export default function Home() {
   const [tasks, setTasks] = useState(store.getTasks());
   const [showDescription, setShowDescription] = useState(false);
 
+  const refreshTasks = () => {
+    setTasks(store.getTasks());
+  };
+
   const listIT = () => {
     if (taskText) {
       store.sendTasks({
@@ -22,7 +26,7 @@ export default function Home() {
         deadline: STRING_TYPE,
       });
       setTaskText(STRING_TYPE);
-      setTasks(store.getTasks());
+      refreshTasks();
     }
   };
 
@@ -30,7 +34,7 @@ export default function Home() {
     <TaskContext.Provider
       value={ {
         tasks,
-        setTasks,
+        refreshTasks,
         showDescription,
         setShowDescription,
       } }
