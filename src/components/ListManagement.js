@@ -5,7 +5,7 @@ import ClearListModal from './ClearListModal';
 import { removeClasses } from '../helpers/event';
 
 export default function ListManagement() {
-  const { showDescription, setShowDescription } = useContext(TaskContext);
+  const contexts = useContext(TaskContext);
   const [clearConfirmation, setClearConfirmation] = useState(false);
 
   const showClearListModal = () => setClearConfirmation(!clearConfirmation);
@@ -15,6 +15,7 @@ export default function ListManagement() {
   return (
     <TaskContext.Provider
       value={ {
+        ...contexts,
         showClearListModal,
         clearConfirmation,
       } }
@@ -23,9 +24,9 @@ export default function ListManagement() {
         <button
           className="col-6 btn-n-info"
           type="button"
-          onClick={ () => setShowDescription(!showDescription) }
+          onClick={ () => contexts.setShowDescription(!contexts.showDescription) }
         >
-          {showDescription
+          {contexts.showDescription
             ? 'Esconder Detalhes'
             : 'Exibir Detalhes'}
         </button>

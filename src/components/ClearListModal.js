@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import $ from 'jquery';
 import { Modal } from 'react-bootstrap';
 import * as store from '../helpers/store';
 import TaskContext from '../context/TasksContext';
 
 export default function ClearListModal() {
-  const { showClearListModal, clearConfirmation } = useContext(TaskContext);
+  const { showClearListModal, clearConfirmation, refreshTasks } = useContext(TaskContext);
 
   const clearList = () => {
-    $('ol li').each((i, e) => e.remove());
     store.deleteTask('all');
+    refreshTasks();
+    showClearListModal();
   };
 
   return (
