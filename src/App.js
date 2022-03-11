@@ -6,12 +6,13 @@ import './styles/myStyles.css';
 
 const AListarApp = () => (
   <TaskContext>
-    <div
-      className="d-flex flex-wrap
-      justify-content-center"
-    >
-      { aListarRouter() }
-    </div>
+    {() => (
+      <div
+        className="d-flex flex-wrap
+        justify-content-center"
+      >
+        {aListarRouter()}
+      </div>)}
   </TaskContext>
 );
 
