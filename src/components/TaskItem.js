@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import PropType from 'prop-types';
+import React from 'react';
 import ControlKeys from './ControlKeys';
 
-export default class TaskItem extends Component {
-  toggleDescription = () => {
-    const { showDescription, desc: description, createdOn,
-      deadline } = this.props;
+export default function tskintem(
+  { task, uniqKey, desc: description, createdOn, deadline },
+) {
+  const { showDescription } = useContext(TaskContext);
+
+  const toggleDescription = () => {
     const details = [`Criado em: ${createdOn}`, description, `Prazo: ${deadline}`];
     if (!description) {
       details[1] = 'Você ainda não definiu uma descrição!';
@@ -19,35 +20,22 @@ export default class TaskItem extends Component {
           {detail}
         </p>)))
       : null;
-  }
+  };
 
-  render() {
-    const { task, reRender, uniqKey } = this.props;
-    return (
-      <li
-        className=" row col-8 d-flex
+  return (
+    <li
+      className=" row col-8 d-flex
         mx-auto justify-content-center
         mb-2 pt-1"
-      >
-        <span className="text-center col-4">
-          { task }
-        </span>
-        <ControlKeys reRender={ reRender } uniqKey={ uniqKey } />
-        <div className="mt-4 px-0 row">
-          { this.toggleDescription() }
-        </div>
-        <hr className="border-bottom-toHr" />
-      </li>
-    );
-  }
+    >
+      <span className="text-center col-4">
+        { task }
+      </span>
+      <ControlKeys uniqKey={ uniqKey } />
+      <div className="mt-4 px-0 row">
+        { toggleDescription()}
+      </div>
+      <hr className="border-bottom-toHr" />
+    </li>
+  );
 }
-
-TaskItem.propTypes = {
-  task: PropType.string.isRequired,
-  uniqKey: PropType.string.isRequired,
-  reRender: PropType.func.isRequired,
-  showDescription: PropType.bool.isRequired,
-  desc: PropType.string.isRequired,
-  createdOn: PropType.string.isRequired,
-  deadline: PropType.string.isRequired,
-};
