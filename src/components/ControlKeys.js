@@ -1,17 +1,17 @@
 import React, { useContext, useState } from 'react';
-import $ from 'jquery';
 import { useHistory } from 'react-router-dom';
 import PropType from 'prop-types';
+import $ from 'jquery';
+import TaskContext from '../context/TasksContext';
 import { getPathLink } from '../helpers/easier';
 import * as store from '../helpers/store';
-import TaskContext from '../context/TasksContext';
 
 export default function ControlKeys({ uniqKey }) {
   const [link] = useState(getPathLink(uniqKey));
 
   const { refreshTasks } = useContext(TaskContext);
 
-  const history = useHistory();
+  const { push } = useHistory();
 
   const excludeButton = ({ target: { parentNode } }) => {
     const index = $('ol li').index(parentNode);
@@ -45,32 +45,32 @@ export default function ControlKeys({ uniqKey }) {
         className="btn-n-info mx-0 col-1"
         type="button"
         name="infos"
-        onClick={ () => history.push(link) }
+        onClick={ () => push(link) }
       >
         <i className="fas fa-pencil-alt" />
       </button>
       <button
-        className="fas fa-arrow-up btn-grey-7 mx-1 col-1"
+        className="btn-grey-7 mx-1 col-1"
         type="button"
         name="up"
         onClick={ moveButton }
       >
-        { }
+        <i className="fas fa-arrow-up" />
       </button>
       <button
-        className="fas fa-arrow-down btn-grey-7 mx-1 col-1"
+        className="btn-grey-7 mx-1 col-1"
         type="button"
         name="down"
         onClick={ moveButton }
       >
-        { }
+        <i className="fas fa-arrow-down" />
       </button>
       <button
-        className="fas fa-trash-alt btn-n-danger mx-1 col-1"
+        className="btn-n-danger mx-1 col-1"
         type="button"
         onClick={ excludeButton }
       >
-        { }
+        <i className="fas fa-trash-alt" />
       </button>
     </>
   );
