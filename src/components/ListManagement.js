@@ -23,7 +23,7 @@ export default function ListManagement() {
         <button
           className="col-6 btn-n-info"
           type="button"
-          onClick={ setShowDescription(!showDescription) }
+          onClick={ () => setShowDescription(!showDescription) }
         >
           {showDescription
             ? 'Esconder Detalhes'

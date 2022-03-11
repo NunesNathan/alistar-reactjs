@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropType from 'prop-types';
 import ControlKeys from './ControlKeys';
+import TaskContext from '../context/TasksContext';
 
 export default function TaskItem(
   { task, uniqKey, desc: description, createdOn, deadline },
