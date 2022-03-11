@@ -7,22 +7,24 @@ import * as store from '../helpers/store';
 
 const STRING_TYPE = '';
 
-export default function home() {
+export default function Home() {
   const [taskText, setTaskText] = useState(STRING_TYPE);
   const [tasks, setTasks] = useState(store.getTasks());
   const [showDescription, setShowDescription] = useState(false);
 
-  const listIT = () => (
-    taskText
-    && (store.sendTasks({
-      task: taskText,
-      uniqKey: createKey(taskText),
-      desc: STRING_TYPE,
-      createdOn: newDate(),
-      deadline: STRING_TYPE,
-    }))
-    && setTaskText(STRING_TYPE)
-  );
+  const listIT = () => {
+    if (taskText) {
+      store.sendTasks({
+        task: taskText,
+        uniqKey: createKey(taskText),
+        desc: STRING_TYPE,
+        createdOn: newDate(),
+        deadline: STRING_TYPE,
+      });
+      setTaskText(STRING_TYPE);
+      setTasks(store.getTasks());
+    }
+  };
 
   return (
     <TaskContext.Provider
@@ -51,7 +53,7 @@ export default function home() {
           <button
             className="btn-n-outline-success col-3"
             type="button"
-            onClick={ () => listIT() }
+            onClick={ listIT }
           >
             Listar!
           </button>
