@@ -12,7 +12,7 @@ export default function TaskDetails() {
   const { task, desc: description, uniqKey, deadline, createdOn } = store.getTaskByKey();
   const [desc, setDesc] = useState(description);
 
-  useEffect(addBorderHome(), []);
+  useEffect(addBorderHome, []);
 
   const sendDeadline = () => {
     const day = $('#dayNum').val();
