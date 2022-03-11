@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropType from 'prop-types';
 
 export default function ControlKeys({ uniqKey }) {
   const [link] = useState(getPathLink(uniqKey));
