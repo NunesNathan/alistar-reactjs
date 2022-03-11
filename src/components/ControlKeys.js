@@ -1,40 +1,32 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import PropType from 'prop-types';
-import $ from 'jquery';
-import * as store from '../helpers/store';
-import { getPathLink } from '../helpers/easier';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-export default class ControlKeys extends Component {
-  constructor(props) {
-    super();
+export default function ControlKeys({ uniqKey }) {
+  const [link] = useState(getPathLink(uniqKey));
 
-    const { uniqKey, ...proper } = props;
-    this.state = {
-      goTo: false,
-      ...proper,
-      link: getPathLink(uniqKey),
-    };
-  }
+  const history = useHistory();
 
-  excludeButton = ({ target: { parentNode } }) => {
-    const { reRender } = this.state;
+  const excludeButton = ({ target: { parentNode } }) => {
     const index = $('ol li').index(parentNode);
     store.deleteTask(index);
-    reRender();
     parentNode.remove();
-  }
+  };
 
-  moveButton = ({ target }) => {
-    const { reRender } = this.state;
-
+  const moveButton = ({ target }) => {
     // Pensei outras maneiras de pegar o texto do span, mas quis forçar o jQuery
     // I had another ways to get span text, but I prefer force jQuery
-    const previous = $('ol li').find(target).parent().prev()
-      .index();
-    const next = $('ol li').find(target).parent().next()
-      .index();
-    const current = $('ol li').find(target).parent().index();
+    // const previous = $('ol li').find(target).parent().prev()
+    //   .index();
+    // const next = $('ol li').find(target).parent().next()
+    //   .index();
+    // const current = $('ol li').find(target).parent().index();
+
+    const [previous, next, current] = [
+      $('ol li').find(target).parent().prev()
+        .index(),
+      $('ol li').find(target).parent().next()
+        .index(),
+      $('ol li').find(target).parent().index()];
 
     if (target.name === 'up') {
       store.changeTasksIndex(current, previous);
@@ -43,56 +35,43 @@ export default class ControlKeys extends Component {
     if (target.name === 'down') {
       store.changeTasksIndex(current, next);
     }
+  };
 
-    reRender();
-  }
-
-  redirectButton = () => {
-    this.setState({
-      goTo: true,
-    });
-  }
-
-  render() {
-    const { goTo, link } = this.state;
-    return (
-      <>
-        <button
-          className="btn-n-info mx-0 col-1"
-          type="button"
-          name="infos"
-          onClick={ this.redirectButton }
-        >
-          <i className="fas fa-pencil-alt" />
-        </button>
-        <button
-          className="fas fa-arrow-up btn-grey-7 mx-1 col-1"
-          type="button"
-          name="up"
-          onClick={ this.moveButton }
-        >
-          { }
-        </button>
-        <button
-          className="fas fa-arrow-down btn-grey-7 mx-1 col-1"
-          type="button"
-          name="down"
-          onClick={ this.moveButton }
-        >
-          { }
-        </button>
-        <button
-          className="fas fa-trash-alt btn-n-danger mx-1 col-1"
-          type="button"
-          onClick={ this.excludeButton }
-        >
-          { }
-        </button>
-        {goTo
-          && <Redirect to={ link } />}
-      </>
-    );
-  }
+  return (
+    <>
+      <button
+        className="btn-n-info mx-0 col-1"
+        type="button"
+        name="infos"
+        onClick={ () => history.push(link) }
+      >
+        <i className="fas fa-pencil-alt" />
+      </button>
+      <button
+        className="fas fa-arrow-up btn-grey-7 mx-1 col-1"
+        type="button"
+        name="up"
+        onClick={ moveButton }
+      >
+        { }
+      </button>
+      <button
+        className="fas fa-arrow-down btn-grey-7 mx-1 col-1"
+        type="button"
+        name="down"
+        onClick={ moveButton }
+      >
+        { }
+      </button>
+      <button
+        className="fas fa-trash-alt btn-n-danger mx-1 col-1"
+        type="button"
+        onClick={ excludeButton }
+      >
+        { }
+      </button>
+    </>
+  );
 }
 
 ControlKeys.propTypes = {
