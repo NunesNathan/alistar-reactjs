@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import $ from 'jquery';
 import { useHistory } from 'react-router-dom';
 import PropType from 'prop-types';
 import { getPathLink } from '../helpers/easier';
+import * as store from '../helpers/store';
+import TaskContext from '../context/TasksContext';
 
 export default function ControlKeys({ uniqKey }) {
   const [link] = useState(getPathLink(uniqKey));
+
+  const { refreshTasks } = useContext(TaskContext);
 
   const history = useHistory();
 
   const excludeButton = ({ target: { parentNode } }) => {
     const index = $('ol li').index(parentNode);
     store.deleteTask(index);
-    parentNode.remove();
+    refreshTasks();
   };
 
   const moveButton = ({ target }) => {
     // Pensei outras maneiras de pegar o texto do span, mas quis forçar o jQuery
     // I had another ways to get span text, but I prefer force jQuery
-    // const previous = $('ol li').find(target).parent().prev()
-    //   .index();
-    // const next = $('ol li').find(target).parent().next()
-    //   .index();
-    // const current = $('ol li').find(target).parent().index();
 
     const [previous, next, current] = [
       $('ol li').find(target).parent().prev()
@@ -32,11 +32,11 @@ export default function ControlKeys({ uniqKey }) {
 
     if (target.name === 'up') {
       store.changeTasksIndex(current, previous);
-    }
-
-    if (target.name === 'down') {
+    } else if (target.name === 'down') {
       store.changeTasksIndex(current, next);
     }
+
+    refreshTasks();
   };
 
   return (
