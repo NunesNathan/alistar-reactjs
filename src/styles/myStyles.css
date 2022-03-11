@@ -158,6 +158,14 @@ button i {
   width: 7.5rem;
 }
 
+.nav-link i {
+color: var(--neithans-grey-3);
+}
+
+.nav-link:hover i {
+  color: var(--neithans-grey-5);
+}
+
 .nav-pills .nav-link.active {
   background-color: var(--neithans-grey-7);
 }

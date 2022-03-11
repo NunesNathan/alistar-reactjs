@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import NavItem from './NavItem';
-import TaskContext from '../context/TasksContext';
+import * as store from '../helpers/store';
 
 export default function NavList() {
-  const { tasks } = useContext(TaskContext);
+  const tasks = store.getTasks();
   const { push } = useHistory();
 
   return (
