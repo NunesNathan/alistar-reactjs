@@ -1,18 +1,18 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import renderWithRouter from '../mocks/renderWithRouter';
-import App from '../../App';
+import renderWithRouter from './mocks/renderWithRouter';
+import AListarApp from '../App';
 
 describe('1 - Render Home', () => {
   beforeEach(() => {
-    renderWithRouter(<App />);
+    renderWithRouter(<AListarApp />);
   });
 
-  it('1.1 - Render title list.', () => {
-    const paragraph = screen.getByText(/Afazeres:/);
+  it('1.1 - Render list title.', () => {
+    const listTitle = screen.getByText(/Afazeres:/);
 
-    expect(paragraph).toBeInTheDocument();
+    expect(listTitle).toBeInTheDocument();
   });
   it('1.2 - Render input to task name.', () => {
     const placeholder = screen.getByPlaceholderText('Tarefa...');
@@ -20,7 +20,7 @@ describe('1 - Render Home', () => {
     expect(placeholder).toBeInTheDocument();
   });
   it('1.3 - Render submit task button.', () => {
-    const listIt = screen.getByRole('button', { name: 'List it!' });
+    const listIt = screen.getByRole('button', { name: 'Listar!' });
 
     expect(listIt).toBeInTheDocument();
   });
