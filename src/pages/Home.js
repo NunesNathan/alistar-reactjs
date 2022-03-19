@@ -1,89 +1,71 @@
-import React, { Component } from 'react';
-import TaskList from '../components/TaskList';
+import React, { useState } from 'react';
 import ListManagement from '../components/ListManagement';
+import TaskList from '../components/TaskList';
+import TaskContext from '../context/TasksContext';
 import { createKey, newDate } from '../helpers/easier';
 import * as store from '../helpers/store';
 
-export default class Home extends Component {
-  constructor(props) {
-    super();
+const STRING_TYPE = '';
 
-    this.state = {
-      ...props,
-      inputValue: '',
-      showDescription: false,
-      tasks: store.getTasks(),
-    };
-  }
+export default function Home() {
+  const [taskText, setTaskText] = useState(STRING_TYPE);
+  const [tasks, setTasks] = useState(store.getTasks());
+  const [showDescription, setShowDescription] = useState(false);
 
-  sendTask = () => {
-    const { inputValue, reRender } = this.state;
-    if (inputValue) {
+  const refreshTasks = () => {
+    setTasks(store.getTasks());
+  };
+
+  const listIT = () => {
+    if (taskText) {
       store.sendTasks({
-        task: inputValue,
-        uniqKey: createKey(inputValue),
-        desc: '',
+        task: taskText,
+        uniqKey: createKey(taskText),
+        desc: STRING_TYPE,
         createdOn: newDate(),
-        deadline: '',
+        deadline: STRING_TYPE,
       });
-      this.setState({
-        inputValue: '',
-      });
-      reRender();
+      setTaskText(STRING_TYPE);
+      refreshTasks();
     }
-  }
+  };
 
-  getTaskName = ({ target: { value } }) => {
-    this.setState({
-      inputValue: value,
-    });
-  }
-
-  switchDescription = () => {
-    const { showDescription: oldValue } = this.state;
-    this.setState({
-      showDescription: !oldValue,
-    });
-  }
-
-  render() {
-    const { inputValue, reRender, showDescription, tasks } = this.state;
-    return (
+  return (
+    <TaskContext.Provider
+      value={ {
+        tasks,
+        refreshTasks,
+        showDescription,
+        setShowDescription,
+      } }
+    >
       <main className="d-flex flex-column container align-items-center">
         <p className="text-center display-5">Afazeres:</p>
         <label
           className="flex-wrap d-flex input-group
-          w-50 row"
+            w-50 row"
           htmlFor="taskInput"
         >
           <input
             className="form-control col-9 bg-grey-2"
             placeholder="Tarefa..."
-            value={ inputValue }
-            onChange={ this.getTaskName }
+            value={ taskText }
+            onChange={ ({ target: { value } }) => setTaskText(value) }
             id="taskInput"
             name="taskInput"
           />
           <button
             className="btn-n-outline-success col-3"
             type="button"
-            onClick={ this.sendTask }
+            onClick={ listIT }
           >
             Listar!
           </button>
         </label>
-        <ListManagement
-          showDescription={ showDescription }
-          switchDescription={ this.switchDescription }
-          reRender={ reRender }
-        />
+        <ListManagement />
         {tasks
-          && <TaskList
-            tasks={ tasks }
-            reRender={ reRender }
-            showDescription={ showDescription }
-          />}
+          && <TaskList />}
       </main>
-    );
-  }
+    </TaskContext.Provider>
+  );
 }

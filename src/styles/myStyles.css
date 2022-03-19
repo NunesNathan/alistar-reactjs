@@ -108,34 +108,33 @@ footer {
   background-color: #a16061;
 }
 
-.btn-n-info, .btn-n-info i {
+.btn-n-info, .btn-n-info {
   color: #000;
   background-color: var(--neithans-n-info);
 }
 
 .btn-n-info:hover  {
-  color: #000;
   background-color: #718591;
 }
 
 .btn-grey-9 {
-  color: #000;
   background-color: var(--neithans-grey-9);
 }
 
 .btn-grey-9:hover {
-  color: #000;
   background-color: var(--neithans-grey-7);
 }
 
 .btn-grey-7 {
-  color: #000;
   background-color: var(--neithans-grey-7);
 }
 
 .btn-grey-7:hover {
-  color: #000;
   background-color: var(--neithans-grey-6);
+}
+
+button i {
+  color: #000;
 }
 
 .form-control {
@@ -157,6 +156,14 @@ footer {
 .nav-link {
   color: var(--neithans-grey-3);
   width: 7.5rem;
+}
+
+.nav-link i {
+color: var(--neithans-grey-3);
+}
+
+.nav-link:hover i {
+  color: var(--neithans-grey-5);
 }
 
 .nav-pills .nav-link.active {
