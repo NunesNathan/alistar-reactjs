@@ -21,7 +21,7 @@ export function sendTasks(task) {
 
 export function deleteTask(task) {
   if (task === 'all') {
-    localStorage.setItem('tasks', '[]');
+    localStorage.setItem('tasks', JSON.stringify([]));
   } else {
     const taskArray = getTasks();
     taskArray.splice(task, 1);

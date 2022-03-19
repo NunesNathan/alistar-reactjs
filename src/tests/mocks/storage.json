@@ -1,0 +1,23 @@
+[
+  {
+    "task": "Comprar ração para o gato",
+    "uniqKey": "Comp-task-l0yg3vm1",
+    "desc": "De salmão!",
+    "createdOn": "19/3/2022",
+    "deadline": "22/3/2022"
+  },
+  {
+    "task": "Correr na praia",
+    "uniqKey": "Corr-task-l0yg4e4g",
+    "desc": "",
+    "createdOn": "19/3/2022",
+    "deadline": ""
+  },
+  {
+    "task": "Limpar caixa d'água ",
+    "uniqKey": "Limp-task-l0yg57wu",
+    "desc": "",
+    "createdOn": "19/3/2022",
+    "deadline": "28/3/2022"
+  }
+]
